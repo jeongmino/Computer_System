@@ -24,6 +24,7 @@
 # define INPUT_ERR "Wrong input!\n"
 # define CAL_ERR "There is an error on calculating\n"
 int operand;
+char arith_op;           //arithmetic_operator
 int result;
 
 typedef enum operand
@@ -55,5 +56,14 @@ void    print_output(t_info *info);
 
 /********* util.c *********/
 int is_digit_and_dot(char c);
+
+/********* calculate.c *********/
+int calculate_num(t_info *dest, t_info *src, t_info *output);
+/********* plus.c *********/
+int plus_num(t_info *dest, t_info *src, t_info *output);
+
+/********* minus.c *********/
+void       minus_int(t_info *big, t_info *small, t_info *output);
+int        minus_num(t_info *dest, t_info *src, t_info *output);
 
 #endif

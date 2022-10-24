@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_num.c                                    :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 14:24:10 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/21 10:31:34 by junoh            ###   ########.fr       */
+/*   Created: 2022/10/20 22:00:28 by junoh             #+#    #+#             */
+/*   Updated: 2022/10/23 17:14:37 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./beyond.h"
+#include<stdio.h>
+#include <limits.h>
 
-
-int calculate_num(t_info *dest, t_info *src, t_info *output)
+int main(void)
 {
-    // printf("operand == %d\n", operand);
-    if (operand == PLUS)
-        plus_num(dest, src, output);
-    else if (operand == MINUS)
-        minus_num(dest, src, output);
-    // else if (operand == MULTIPLY)
-    //     multiply_num();
-    // else
-    //     divide_num();
-    return (TRUE);
+    int i_num = INT_MAX;
+    double d = INT_MAX;
+    
+    if ((double)i_num == d)
+        printf("test is success\n");
+    else 
+        printf("test is fail\n");
+    printf("(double)i_num = %f\n", (double)i_num);
+    return (0);
 }

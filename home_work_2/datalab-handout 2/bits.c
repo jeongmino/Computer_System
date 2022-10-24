@@ -139,6 +139,8 @@ NOTES:
  *   Rating: 1
  */
 int bitAnd(int x, int y) {
+
+    return (x & y);
   return 2;
 }
 /* 
@@ -151,12 +153,8 @@ int bitAnd(int x, int y) {
  */
 int getByte(int x, int n) {
 
-
-
-
-
-
-
+	x = x >> (n << 3);
+	return (x & 0xff);
   return 2;
 
 }
@@ -169,6 +167,9 @@ int getByte(int x, int n) {
  *   Rating: 3 
  */
 int logicalShift(int x, int n) {
+	
+	x = x >> n;
+	return x;
   return 2;
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:40:38 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/14 16:04:36 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/22 16:58:10 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,13 @@ void    print_output(t_info *info)
     if (info->sign == -1)
         putchar('-');
     while (i >= 0)
-    {
-        printf("%d", i_num[i]);
-        i--;
-    }
+        printf("%d", i_num[i--]);
     if (info->float_sign)
     {
         printf(".");
         i = info->float_len - 1;
         while (i >= 0)
-        {
-            printf("%d", f_num[i]);
-            i--;
-        }
+            printf("%d", f_num[i--]);
     }
     putchar('\n');
     return ;

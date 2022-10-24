@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:24:05 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/14 16:27:37 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/21 11:26:01 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static void _free_all(t_info *dest, t_info *src, t_info *output)
 
 static int _init_info(t_info *dest, t_info *src, t_info *output)
 {
-    dest->int_num = malloc(sizeof(int) * 500);
-    src->int_num = malloc(sizeof(int) * 500);
-    output->int_num = malloc(sizeof(int) * 500);
+    dest->int_num = calloc(500, sizeof(int));
+    src->int_num = calloc(500, sizeof(int));
+    output->int_num = calloc(500, sizeof(int));
     if (!dest->int_num || !src->int_num || !output->int_num)
         return (FALSE);
-    dest->float_num = malloc(sizeof(int) * 500);
-    src->float_num = malloc(sizeof(int) * 500);
-    output->float_num = malloc(sizeof(int) * 500);
+    dest->float_num = calloc(500, sizeof(int));
+    src->float_num = calloc(500, sizeof(int));
+    output->float_num = calloc(500, sizeof(int));
     if (!dest->float_num || !src->float_num || !output->float_num)
         return (FALSE);
     return (TRUE);
@@ -48,17 +48,22 @@ int main(void)
     {
         operand = 0;
         result = 0;
+        arith_op = '\0';
         continue_flag = 1;
         memset(&dest, 0, sizeof(t_info));
         memset(&src, 0, sizeof(t_info));
         memset(&output, 0, sizeof(t_info));
         if (_init_info(&dest, &src, &output) == FALSE)
             print_error(MALLOC);
+        // memset(&dest, 0, sizeof(t_info));
+        // memset(&src, 0, sizeof(t_info));
+        // memset(&output, 0, sizeof(t_info));
         if (check_num(&dest, &src) == FALSE)
         {
             continue_flag = 0;   
             print_error(INPUT_ERR);
         }
+        calculate_num(&dest, &src, &output);
         // if (continue_flag)
         // {
         //     if (calculate_num(&dest, &src, &output) == FALSE)
@@ -73,6 +78,7 @@ int main(void)
         {
             print_output(&dest);
             print_output(&src);
+            print_output(&output);
         }
         // print_output(&output);
         _free_all(&dest, &src, &output);
