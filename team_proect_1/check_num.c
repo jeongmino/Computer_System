@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:12:40 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/22 17:00:12 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/26 23:37:51 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,26 @@ static void _set_float(t_info *dest, t_info *src)
         j = dest->float_len - 1;
         i = src->float_len - 1;
         while (i >= 0)
-            src->float_num[j--] = src->float_num[i--];
-        i = src->float_len - 2;
+        {
+           src->float_num[j--] = src->float_num[i--];
+           printf("i = %d j = %d\n", i, j);
+        }
+        i = (dest->float_len - src->float_len) - 1;
         while (i >= 0)
             src->float_num[i--] = 0;
+        src->float_num[0] = 0; // src->float_len - 2 <= 0 일 때
         src->float_len = dest->float_len;
     }
     else
     {
         j = dest->float_len - 1;
         i = src->float_len - 1;
-        while (i >= 0)
+        while (j >= 0)
             dest->float_num[i--] = dest->float_num[j--];
-        j = dest->float_len - 2;
+        j = (src->float_len - dest->float_len) - 1;
         while (j >= 0)
             dest->float_num[j--] = 0;
+        dest->float_num[0] = 0;
         dest->float_len = src->float_len;
     }
     
@@ -80,20 +85,6 @@ static  int _change_position(char *str, t_info *info)
         }
         info->int_len++;
     }
-    // if (info->float_sign)
-    // {
-    //     j = 0;
-    //     while (str[i] != '\0')
-    //     {
-    //         if (str[i] == '.' || is_digit_and_dot(str[i]) == FALSE)
-    //             return (FALSE);
-    //          info->float_num[j++] = str[i++] - '0';
-    //         info->float_len++;
-    //     }
-    //     i = int_i;
-    // }
-    // else
-    //     i--;
     if (info->float_sign)
     {
         while (str[i] != '\0')
