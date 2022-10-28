@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:24:05 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/21 11:26:01 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/28 13:04:14 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(void)
     
     while (1)
     {
-        operand = 0;
+        operand = 0;   /*변수 0 으로 전부 초가화 49 ~ 55 줄 */
         result = 0;
         arith_op = '\0';
         continue_flag = 1;
@@ -55,9 +55,6 @@ int main(void)
         memset(&output, 0, sizeof(t_info));
         if (_init_info(&dest, &src, &output) == FALSE)
             print_error(MALLOC);
-        // memset(&dest, 0, sizeof(t_info));
-        // memset(&src, 0, sizeof(t_info));
-        // memset(&output, 0, sizeof(t_info));
         if (check_num(&dest, &src) == FALSE)
         {
             continue_flag = 0;   
