@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:31:06 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/27 00:16:04 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 12:25:40 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void minus_int(t_info *big, t_info *small, t_info *output)
     }
     output->int_len = big->int_len;
     if (output->int_num[big->int_len - 1] == 0)
-        output->int_len = big->int_len - 1;
+        output->int_len = big->int_len;
     return ;    
 }
 
@@ -122,54 +122,54 @@ int minus_float(t_info *big, t_info *small, t_info *output)
     }
     output->float_len = big->float_len;
     if (output->float_num[big->float_len - 1] == 0)
-        output->float_len = big->float_len - 1;
+        output->float_len = big->float_len;
     printf("round_minus = %d\n" ,round_minus);
     return (round_minus);
 }
 
-static void _minus_float_first(t_info *dest, t_info *src, t_info *output, char *float_flag, char *int_flag)
-{
-    if (!strcmp(float_flag, "dest"))
-    {
-        minus_float(dest, src, output);
-        if (!strcmp(int_flag, "src"))
-            src->int_num[0] -= 1; 
-    }
-    else if (!strcmp(float_flag, "src"))
-    {
-        minus_float(src, dest, output);
-        if (!strcmp(int_flag, "dest"))
-            dest->int_num[0] -= 1;
-    }
-    else
-        output->float_sign = 0;
-    return ;
-}
+// static void _minus_float_first(t_info *dest, t_info *src, t_info *output, char *float_flag, char *int_flag)
+// {
+//     if (!strcmp(float_flag, "dest"))
+//     {
+//         minus_float(dest, src, output);
+//         if (!strcmp(int_flag, "src"))
+//             src->int_num[0] -= 1; 
+//     }
+//     else if (!strcmp(float_flag, "src"))
+//     {
+//         minus_float(src, dest, output);
+//         if (!strcmp(int_flag, "dest"))
+//             dest->int_num[0] -= 1;
+//     }
+//     else
+//         output->float_sign = 0;
+//     return ;
+// }
 
 int        minus_num(t_info *dest, t_info *src, t_info *output)
 {
     char    *int_bigger;
     char    *float_bigger;
-
+    int flag = 0;
+    
     
     if (dest->float_sign || src->float_sign)
         output->float_sign = 1;
     int_bigger = _compare_size_int(dest, src); // 나중에 free
-    float_bigger = _compare_size_float(dest, src);
-    _minus_float_first(dest, src, output, float_bigger, int_bigger);
     if (strcmp(int_bigger, "same"))
     {                                           // bigger is not same
         _change_sign(dest, src, output, int_bigger);
         if (!strcmp(int_bigger, "dest"))
         {
-            // float_flag = minus_float(dest, src, output);
-            // dest->int_num[0] -= float_flag;
+            flag = minus_float(dest, src, output);
+            printf("flag = %d\n", flag);
+            // dest->int_num[0] -= minus_float(dest, src, output);
+            dest->int_num[0] -= flag;
             minus_int(dest, src, output);
         }
         else
         {
-            // float_flag = minus_float(src, dest, output);
-            // src->int_num[0] -= float_flag;
+            src->int_num[0] -= minus_float(src, dest, output);
             minus_int(src, dest, output);
         }
     }
@@ -177,9 +177,26 @@ int        minus_num(t_info *dest, t_info *src, t_info *output)
     {
         output->sign = 0;
         output->int_len = 1;
+        float_bigger = _compare_size_float(dest, src);
+        if (!strcmp(float_bigger, "dest"))
+        {
+            flag = minus_float(dest, src, output);
+            if (flag == 1)
+                output->sign = -1;
+        }
+        else if (!strcmp(float_bigger, "src"))
+        {
+            flag = minus_float(src, dest, output);
+            output->sign = -1;
+        }
+        else
+        {
+            output->float_sign = 1;
+            output->float_len = 1;
+        }
         // output->float_sign = 0;
     }
     free(int_bigger);
-    free(float_bigger);
+    // free(float_bigger);
     return (TRUE);   
 }
