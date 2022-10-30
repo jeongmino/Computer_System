@@ -6,7 +6,7 @@
 #    By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/14 13:42:32 by junoh             #+#    #+#              #
-#    Updated: 2022/10/30 17:55:39 by junoh            ###   ########.fr        #
+#    Updated: 2022/10/30 18:31:57 by junoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC	=	beyond.c \
 		calculate_num.c\
 		plus.c\
 		minus.c\
-		# multiply.c\
+		multiply.c\
 			
 OBJ = $(SRC:.c=.o)
 CC = gcc 
