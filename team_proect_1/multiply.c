@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:30:17 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 15:43:46 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 15:46:14 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int multiply_num(t_info *dest, t_info *src, t_info *output)
 {   
     output->sign = _check_sign(dest->sign, src->sign);
     _int_mul_int(dest, src, output);
-    if ((src->int_len == 1 && src->int_num[0]) || )
+    // if ((src->int_len == 1 && src->int_num[0]) || )
     // _int_mul_float(dest, src, output);
     return (TRUE);
 }
