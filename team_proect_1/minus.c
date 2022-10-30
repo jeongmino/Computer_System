@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:31:06 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 17:54:58 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 18:19:20 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ int        minus_num(t_info *dest, t_info *src, t_info *output)
         {
             flag = minus_float(dest, src, output);
             if (flag == 1)
+                output->sign = -1;
+            else if (dest->sign == -1 && src->sign == 1)
                 output->sign = -1;
         }
         else if (!strcmp(float_bigger, "src"))
