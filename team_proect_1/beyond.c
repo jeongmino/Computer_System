@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:24:05 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/28 13:04:14 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 12:35:26 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static void _free_all(t_info *dest, t_info *src, t_info *output)
 
 static int _init_info(t_info *dest, t_info *src, t_info *output)
 {
-    dest->int_num = calloc(500, sizeof(int));
-    src->int_num = calloc(500, sizeof(int));
-    output->int_num = calloc(500, sizeof(int));
+    dest->int_num = (int *)calloc(500, sizeof(int));
+    src->int_num = (int *)calloc(500, sizeof(int));
+    output->int_num = (int *)calloc(500, sizeof(int));
     if (!dest->int_num || !src->int_num || !output->int_num)
         return (FALSE);
-    dest->float_num = calloc(500, sizeof(int));
-    src->float_num = calloc(500, sizeof(int));
-    output->float_num = calloc(500, sizeof(int));
+    dest->float_num = (int *)calloc(500, sizeof(int));
+    src->float_num = (int *)calloc(500, sizeof(int));
+    output->float_num = (int *)calloc(500, sizeof(int));
     if (!dest->float_num || !src->float_num || !output->float_num)
         return (FALSE);
     return (TRUE);
