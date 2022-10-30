@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:30:17 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 15:33:01 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 15:43:46 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static void _int_mul_int(t_info *dest, t_info *src, t_info *output)
         }
         s_i++; 
     }
+    output->int_len = s_i + d_i - 1;
+    if (output->int_num[s_i + d_i - 1] != 0)
+        output->int_len++;
     return ;
 }
 
@@ -68,6 +71,7 @@ int multiply_num(t_info *dest, t_info *src, t_info *output)
 {   
     output->sign = _check_sign(dest->sign, src->sign);
     _int_mul_int(dest, src, output);
+    if ((src->int_len == 1 && src->int_num[0]) || )
     // _int_mul_float(dest, src, output);
     return (TRUE);
 }
