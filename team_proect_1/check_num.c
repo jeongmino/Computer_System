@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:12:40 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/26 23:37:51 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 15:34:10 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void _set_float(t_info *dest, t_info *src)
         while (i >= 0)
         {
            src->float_num[j--] = src->float_num[i--];
-           printf("i = %d j = %d\n", i, j);
+
         }
         i = (dest->float_len - src->float_len) - 1;
         while (i >= 0)

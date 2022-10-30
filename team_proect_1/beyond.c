@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:24:05 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 12:35:26 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 15:36:38 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int main(void)
         //     print_output();
         if (continue_flag)
         {
-            print_output(&dest);
-            print_output(&src);
+            // print_output(&dest);
+            // print_output(&src);
             print_output(&output);
         }
         // print_output(&output);

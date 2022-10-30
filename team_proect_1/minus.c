@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:31:06 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 12:25:40 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 15:33:58 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int minus_float(t_info *big, t_info *small, t_info *output)
     output->float_len = big->float_len;
     if (output->float_num[big->float_len - 1] == 0)
         output->float_len = big->float_len;
-    printf("round_minus = %d\n" ,round_minus);
     return (round_minus);
 }
 
@@ -162,7 +161,6 @@ int        minus_num(t_info *dest, t_info *src, t_info *output)
         if (!strcmp(int_bigger, "dest"))
         {
             flag = minus_float(dest, src, output);
-            printf("flag = %d\n", flag);
             // dest->int_num[0] -= minus_float(dest, src, output);
             dest->int_num[0] -= flag;
             minus_int(dest, src, output);
