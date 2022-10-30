@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:26:42 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 14:46:42 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 14:49:33 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ static  void _plus_int(t_info *dest, t_info *src, t_info *output)
         i++;
     }
     output->int_num[i] += ten_plus;
-    if (output->int_num[i - 1] == 0 && \
-        output->int_num[i] != 0)
+    if (output->int_num[i] != 0)
         output->int_len++;
     return ;
 }
