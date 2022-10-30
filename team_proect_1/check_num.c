@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:12:40 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 15:34:10 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/30 17:29:32 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int check_num(t_info *dest, t_info *src)
     scanf("%s", dest_s);
     printf("Input your second number : ");
     scanf("%s", src_s);
-    printf("Input your operand : ");
+    printf("Input your operator : ");
     scanf("%s", oper_c);
     if (_change_position(dest_s, dest) == FALSE)
         return(FALSE);

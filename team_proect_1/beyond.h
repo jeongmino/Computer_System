@@ -67,5 +67,5 @@ void       minus_int(t_info *big, t_info *small, t_info *output);
 int        minus_num(t_info *dest, t_info *src, t_info *output);
 
 /********* multiply.c *********/
-int multiply_num(t_info *dest, t_info *src, t_info *output);
+// int multiply_num(t_info *dest, t_info *src, t_info *output);
 #endif
