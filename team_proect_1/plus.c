@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   plus.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 11:26:42 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 14:49:33 by junoh            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "beyond.h"
 
 static int  _pre_plus(t_info *dest, t_info *src, t_info *output)
@@ -66,7 +54,7 @@ static  void _plus_int(t_info *dest, t_info *src, t_info *output)
     return ;
 }
 
-static int _plus_float(t_info *dest, t_info *src, t_info *output)
+int plus_float(t_info *dest, t_info *src, t_info *output)
 {
     int i = 0;    
     int ten_plus = 0;
@@ -101,7 +89,7 @@ static void _sign_check(t_info *dest, t_info *src, t_info *output)
     return ;       
 }
 
-static void _plus_one(t_info *output, int plus)
+void plus_one(t_info *output, int plus)
 {
     int ten_plus = plus;
     int i = 0;
@@ -131,9 +119,9 @@ int plus_num(t_info *dest, t_info *src, t_info *output)
     if (dest->float_len || src->float_len)
     {
         output->float_sign = 1;
-       float_sign = _plus_float(dest, src, output);
+       float_sign = plus_float(dest, src, output);
     }
     if (float_sign)
-        _plus_one(output, 1);
+        plus_one(output, 1);
     return (TRUE);    
 }

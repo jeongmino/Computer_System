@@ -6,7 +6,7 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:12:40 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 17:29:32 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/31 10:34:40 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static  void    _check_sign(char *str, t_info *info, int *i)
     return ;
 }     
 
-static void _set_float(t_info *dest, t_info *src)
+void set_float(t_info *dest, t_info *src)
 {
     int big_len;
     int small_len;
@@ -49,7 +49,7 @@ static void _set_float(t_info *dest, t_info *src)
         i = (dest->float_len - src->float_len) - 1;
         while (i >= 0)
             src->float_num[i--] = 0;
-        src->float_num[0] = 0; // src->float_len - 2 <= 0 일 때
+        src->float_num[0] = 0; 
         src->float_len = dest->float_len;
     }
     else
@@ -168,7 +168,7 @@ int check_num(t_info *dest, t_info *src)
         return(FALSE);
     if (_change_position(src_s, src) == FALSE)
         return (FALSE);
-    _set_float(dest, src);
+    set_float(dest, src);
     if (_set_operand(oper_c, dest->sign, src->sign) == FALSE)
         return (FALSE);
     return (TRUE);

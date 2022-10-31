@@ -6,13 +6,13 @@
 /*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:24:05 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 18:44:03 by junoh            ###   ########.fr       */
+/*   Updated: 2022/10/31 10:33:11 by junoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./beyond.h"
 
-static void _free_all(t_info *dest, t_info *src, t_info *output)
+void free_all(t_info *dest, t_info *src, t_info *output)
 {
     free(dest->int_num);
     free(dest->float_num);
@@ -22,7 +22,7 @@ static void _free_all(t_info *dest, t_info *src, t_info *output)
     free(output->float_num);
 }
 
-static int _init_info(t_info *dest, t_info *src, t_info *output)
+int init_info(t_info *dest, t_info *src, t_info *output)
 {
     dest->int_num = (int *)calloc(500, sizeof(int));
     src->int_num = (int *)calloc(500, sizeof(int));
@@ -53,7 +53,7 @@ int main(void)
         memset(&dest, 0, sizeof(t_info));
         memset(&src, 0, sizeof(t_info));
         memset(&output, 0, sizeof(t_info));
-        if (_init_info(&dest, &src, &output) == FALSE)
+        if (init_info(&dest, &src, &output) == FALSE)
             print_error(MALLOC);
         if (check_num(&dest, &src) == FALSE)
         {
@@ -61,24 +61,9 @@ int main(void)
             print_error(INPUT_ERR);
         }
         calculate_num(&dest, &src, &output);
-        // if (continue_flag)
-        // {
-        //     if (calculate_num(&dest, &src, &output) == FALSE)
-        //     {
-        //         continue_flag = 0;
-        //         print_error(CAL_ERR);
-        //     }
-        // }
-        // if (continue_flag)
-        //     print_output();
         if (continue_flag)
-        {
-            // print_output(&dest);
-            // print_output(&src);
             print_output(&output);
-        }
-        // print_output(&output);
-        _free_all(&dest, &src, &output);
+        free_all(&dest, &src, &output);
     }
     return 1;            
 }

@@ -1,35 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minus.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: junoh <junoh@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 10:31:06 by junoh             #+#    #+#             */
-/*   Updated: 2022/10/30 18:19:20 by junoh            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "beyond.h"
 #include <string.h>
 
-static char  *_compare_size_int(t_info *dest, t_info *src)
+char  *compare_size_int(int *dest_num, int *src_num, int dest_len, int src_len)
 {
     char *bigger;
     int i;
     
-    if (dest->int_len != src->int_len)
+    if (dest_len != src_len)
     {
-        bigger = (dest->int_len > src->int_len) ?  strdup("dest") : strdup("src"); // dest > src 가 참이면 big_len = dest->int_len
-        (void)i; // 컴파일 플래그 우회용
+        bigger = (dest_len > src_len) ?  strdup("dest") : strdup("src"); // dest > src 가 참이면 big_len = dest->int_len
+        (void)i;
         return (bigger);
     }
-    i = dest->int_len - 1;
+    i = dest_len - 1;
     while (i >= 0)
     {
-        if (dest->int_num[i] != src->int_num[i])
+        if (dest_num[i] != src_num[i])
         {
-            bigger = (dest->int_num[i] > src->int_num[i]) ?  strdup("dest") : strdup("src"); 
+            bigger = (dest_num[i] > src_num[i]) ?  strdup("dest") : strdup("src"); 
             return (bigger);
         }
         i--;
@@ -126,25 +114,6 @@ int minus_float(t_info *big, t_info *small, t_info *output)
     return (round_minus);
 }
 
-// static void _minus_float_first(t_info *dest, t_info *src, t_info *output, char *float_flag, char *int_flag)
-// {
-//     if (!strcmp(float_flag, "dest"))
-//     {
-//         minus_float(dest, src, output);
-//         if (!strcmp(int_flag, "src"))
-//             src->int_num[0] -= 1; 
-//     }
-//     else if (!strcmp(float_flag, "src"))
-//     {
-//         minus_float(src, dest, output);
-//         if (!strcmp(int_flag, "dest"))
-//             dest->int_num[0] -= 1;
-//     }
-//     else
-//         output->float_sign = 0;
-//     return ;
-// }
-
 int        minus_num(t_info *dest, t_info *src, t_info *output)
 {
     char    *int_bigger;
@@ -154,7 +123,7 @@ int        minus_num(t_info *dest, t_info *src, t_info *output)
     
     if (dest->float_sign || src->float_sign)
         output->float_sign = 1;
-    int_bigger = _compare_size_int(dest, src); // 나중에 free
+    int_bigger = compare_size_int(dest->int_num, src->int_num, dest->int_len, src->float_len); // 나중에 free
     if (strcmp(int_bigger, "same"))
     {                                           // bigger is not same
         _change_sign(dest, src, output, int_bigger);
@@ -196,9 +165,7 @@ int        minus_num(t_info *dest, t_info *src, t_info *output)
             output->float_sign = 1;
             output->float_len = 1;
         }
-        // output->float_sign = 0;
     }
     free(int_bigger);
-    // free(float_bigger);
     return (TRUE);   
 }

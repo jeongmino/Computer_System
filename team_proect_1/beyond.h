@@ -44,11 +44,15 @@ typedef struct s_info
     int float_len; // 실수 숫자 길이
     int *int_num; // 정수 부분
     int *float_num;  // 소수 부분
-    int round; // 올림 수 유무 (3 + 8 -> round = 1, 3 + 6 -> round = 0)
 }               t_info;
+
+/********* beyond.c *********/
+void free_all(t_info *dest, t_info *src, t_info *output);
+int init_info(t_info *dest, t_info *src, t_info *output);
 
 /********* check_num.c *********/
 int     check_num(t_info *dest, t_info *src);
+void    set_float(t_info *dest, t_info *src);
 
 /********* print_error.c *********/
 void    print_error(char *status);
@@ -61,11 +65,15 @@ int is_digit_and_dot(char c);
 int calculate_num(t_info *dest, t_info *src, t_info *output);
 /********* plus.c *********/
 int plus_num(t_info *dest, t_info *src, t_info *output);
+int plus_float(t_info *dest, t_info *src, t_info *output);
+void plus_one(t_info *output, int plus);
 
 /********* minus.c *********/
 void       minus_int(t_info *big, t_info *small, t_info *output);
 int        minus_num(t_info *dest, t_info *src, t_info *output);
+char        *compare_size_int(int *dest_num, int *src_num, int dest_len, int src_len);
 
 /********* multiply.c *********/
 int multiply_num(t_info *dest, t_info *src, t_info *output);
+int check_sign(int dest_sign, int src_sign);
 #endif
