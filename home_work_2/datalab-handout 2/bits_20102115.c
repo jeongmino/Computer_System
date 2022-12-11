@@ -139,9 +139,7 @@ NOTES:
  *   Rating: 1
  */
 int bitAnd(int x, int y) {
-
     return (x & y);
-  return 2;
 }
 /* 
  * getByte - Extract byte n from word x
@@ -155,8 +153,6 @@ int getByte(int x, int n) {
 
 	x = x >> (n << 3);
 	return (x & 0xff);
-  return 2;
-
 }
 /* 
  * logicalShift - shift x to the right by n, using a logical shift
@@ -168,9 +164,13 @@ int getByte(int x, int n) {
  */
 int logicalShift(int x, int n) {
 	
-	x = x >> n;
-	return x;
-  return 2;
+    int mask;
+    
+    x = x >> n;
+    mask = ~1;
+    mask = mask << (32 + ~n);
+    mask = ~mask;
+    return (x & mask);
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -190,7 +190,12 @@ int bitCount(int x) {
  *   Rating: 4 
  */
 int bang(int x) {
-  return 2;
+    int y;
+    int z;
+
+    y = ~x; 
+    z = x + ~0; // x가 0이 아니면 signbit는 무조건 0; -> overflow 떄문에.
+    return (((y & z) >> 31) & 1);
 }
 /* 
  * tmin - return minimum two's complement integer 
@@ -199,7 +204,7 @@ int bang(int x) {
  *   Rating: 1
  */
 int tmin(void) {
-  return 2;
+    return (1 << 31);
 }
 /* 
  * fitsBits - return 1 if x can be represented as an 
@@ -222,7 +227,12 @@ int fitsBits(int x, int n) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+    int neg;
+    int a;
+
+    neg = x >> 31;
+    a = ((neg & 1) << n) + neg;
+    return (x + a) >> n;
 }
 /* 
  * negate - return -x 
@@ -232,7 +242,7 @@ int divpwr2(int x, int n) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+    return (~x + 1);
 }
 /* 
  * isPositive - return 1 if x > 0, return 0 otherwise 
@@ -242,7 +252,9 @@ int negate(int x) {
  *   Rating: 3
  */
 int isPositive(int x) {
-  return 2;
+    int y = (x >> 31) + 1; // signbit of positive, zero == 0 otherwise 1
+    y = y ^ (!x); // exception handling when x == 0;
+    return (y);
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
@@ -276,7 +288,15 @@ int ilog2(int x) {
  *   Rating: 2
  */
 unsigned float_neg(unsigned uf) {
- return 2;
+
+    int exp;
+    int frac;
+
+    exp = 0x7f800000 & uf;
+    frac = 0x007fffff & uf;
+    if ((exp == 0x7f800000) && frac != 0)
+        return uf;
+    return (uf ^ 0x80000000);
 }
 /* 
  * float_i2f - Return bit-level equivalent of expression (float) x

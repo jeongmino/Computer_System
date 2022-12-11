@@ -23,7 +23,6 @@ btestexplicit:
 clean:
 	rm -f *.o btest fshow ishow *~
 
-re :
-	clean all
+re : clean all
 
 .PHONY : re clean
